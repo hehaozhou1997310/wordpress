@@ -34,16 +34,16 @@ function custom_registration_function() {
         $first_name,
         $last_name,
         $email,
-       $password,
+        $password,
 		);
     }
 
    registration_form(
-    	$username,
-        $first_name,
-        $last_name,
-        $email,
-        $password,      
+    	$username="",
+        $first_name="",
+        $last_name="",
+        $email="",
+        $password="",      
 		); 
 }
 
@@ -124,7 +124,7 @@ function registration_validation( $username, $first_name, $last_name, $email,$pa
     }
 }
 
-    if ( is_wp_error( $reg_errors ) ) {
+    if ( is_wp_error( $reg_errors="") ) {
 
         foreach ( $reg_errors->get_error_messages() as $error ) {
             echo '<div>';
