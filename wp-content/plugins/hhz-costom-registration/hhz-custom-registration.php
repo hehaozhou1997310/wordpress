@@ -67,22 +67,22 @@ function registration_form( $username, $first_name, $last_name, $email, $passwor
 	<input type="text" name="username" value="' . (isset($_POST['username']) ? $username : null) . '">
 	</div>
 	
-	<div>
+	<div class="fcontainer">
 	<label for="firstname">First Name</label>
 	<input type="text" name="fname" value="' . (isset($_POST['fname']) ? $first_name : null) . '">
 	</div>
 	
-	<div>
+	<div class="fcontainer">
 	<label for="website">Last Name</label>
 	<input type="text" name="lname" value="' . (isset($_POST['lname']) ? $last_name : null) . '">
 	</div>
 	
-	<div>
+	<div class="fcontainer">
 	<label for="email">Email <strong>*</strong></label>
 	<input type="text" name="email" value="' . (isset($_POST['email']) ? $email : null) . '">
 	</div>
 	
-	<div>
+	<div class="fcontainer">
 	<label for="password">Password <strong>*</strong></label>
 	<input type="password" name="password" value="' . (isset($_POST['password']) ? $password : null) . '">
 	</div>
