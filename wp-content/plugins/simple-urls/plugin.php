@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Simple URLs
- * Plugin URI: https://getlasso.co/?utm_source=SimpleURLs&utm_campaign=WP
+ * Plugin URI: https://getlasso.co/?utm_source=SimpleURLs&utm_medium=WP
  * Description: Simple URLs is a complete URL management system that allows you create, manage, and track outbound links from your site by using custom post types and 301 redirects.
  * Author: Lasso
- * Author URI: https://getlasso.co/?utm_source=SimpleURLs&utm_campaign=WP
- * Version: 106
+ * Author URI: https://getlasso.co/?utm_source=SimpleURLs&utm_medium=WP
+ * Version: 107
 
  * Text Domain: simple-urls
  * Domain Path: /languages
