@@ -32,6 +32,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 Copyright 2005-2015 Automattic, Inc.
 */
 
+add_filter( 'show_admin_bar','__return_false');
+
 defined('ABSPATH') or die( 'You do not have authorised access to this file!');
 
 class AliDhaidanPackages
@@ -43,14 +45,45 @@ class AliDhaidanPackages
     // can be access only within the class itself
 
     // Private
-    
+    // can be accessed by only within the class itself
+
+    public $plugin;
 
     function __construct() {
-      add_action( 'init', array( $this,'custom_post_type') );
+      $this->plugin = plugin_basename(__FILE__);
     }
 
-    function register( ) {
+    public function register( ) {
       add_action('admin_enqueue_scripts', array( $this, 'enqueue'));
+
+      add_action('admin_menu', array( $this, 'add_admin_pages'));
+
+      
+
+      add_filter( "plugin_action_links_$this->plugin", array($this, 
+      'settings_link'));
+    }
+
+    public function settings_link( $links) {
+      $settings_link = '<a href="admin.php?page=Weekly_packages">Settings
+      </a>';
+      array_push($links, $settings_link);
+      return $links;
+    }
+
+
+    public function add_admin_pages() {
+      add_menu_page('Weekly Packages', 'Packages', 'manage_options', 
+      'Weekly_packages', array( $this, 'admin_index'), 'dashicons-admin-media', 110 );
+
+    }
+
+    public function admin_index() {
+      require_once plugin_dir_path(__FILE__) . 'templates/Admin.php' ;
+    }
+
+    protected function create_post_type() {
+      add_action( 'init', array( $this,'custom_post_type') );
     }
 
     function activate() {
@@ -66,6 +99,9 @@ class AliDhaidanPackages
     }
 
 
+
+
+
     function custom_post_type() {
       register_post_type( 'book', ['public' => true, 'label' => 'Books'] );
     }
@@ -76,15 +112,29 @@ class AliDhaidanPackages
       wp_enqueue_style('mypluginstyle', plugins_url('/assets/myscript.js ',__FILE__));
 
     }
+    
+    
 }
+
+
+
 
 if (class_exists( 'AliDhaidanPackages')) {
   $alidhaidanPackages = new AliDhaidanPackages();
   $alidhaidanPackages->register();
+  
+  
 }
+
+
+
+
 
 // activation
 register_activation_hook( __FILE__, array( $alidhaidanPackages, 'activate' ) );
 
 // deactivation
 register_deactivation_hook( __FILE__, array( $alidhaidanPackages, 'deactivate' ) );
+
+
+
