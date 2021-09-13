@@ -18,7 +18,7 @@
 				<option value="relief clinic">Relief Clinic</option>
 				<option value="shining smile">Shining Smile</option>
 				<option value="wonder ward">Wonder Ward</option>
-				<option value="medireco">Medireco</option>
+				<option value="medireco">Medireco</option> 
 			</select><br>
 
 </body>
