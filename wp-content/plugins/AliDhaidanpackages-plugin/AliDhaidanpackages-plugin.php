@@ -112,9 +112,17 @@ class AliDhaidanPackages
       wp_enqueue_style('mypluginstyle', plugins_url('/assets/myscript.js ',__FILE__));
 
     }
+
+    function dhaidan_function() {
+
+      $txt = "<p>Testing my shortcode</p>";
     
+      return  str_repeat($txt, 2);
+    }
     
 }
+
+add_shortcode('dhaidan', 'dhaidan_function');
 
 
 
