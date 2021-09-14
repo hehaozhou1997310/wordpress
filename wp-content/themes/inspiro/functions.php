@@ -110,9 +110,10 @@ require INSPIRO_THEME_DIR . 'inc/dynamic-css/main-menu.php';
 require INSPIRO_THEME_DIR . 'inc/dynamic-css/mobile-menu.php';
 
 
+
 function dhaidan_function() {
 
-	$txt = "<p>Testing my shortcode</p>";
+	$options = "<p>Testing my shortcode</p>";
   
 	return  str_repeat($txt, 2);
 }

@@ -98,10 +98,6 @@ class AliDhaidanPackages
       flush_rewrite_rules();
     }
 
-
-
-
-
     function custom_post_type() {
       register_post_type( 'book', ['public' => true, 'label' => 'Books'] );
     }
@@ -113,19 +109,7 @@ class AliDhaidanPackages
 
     }
 
-    function dhaidan_function() {
-
-      $txt = "<p>Testing my shortcode</p>";
-    
-      return  str_repeat($txt, 2);
-    }
-    
 }
-
-add_shortcode('dhaidan', 'dhaidan_function');
-
-
-
 
 if (class_exists( 'AliDhaidanPackages')) {
   $alidhaidanPackages = new AliDhaidanPackages();
@@ -133,9 +117,6 @@ if (class_exists( 'AliDhaidanPackages')) {
   
   
 }
-
-
-
 
 
 // activation
