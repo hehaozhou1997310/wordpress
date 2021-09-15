@@ -62,6 +62,8 @@ class AliDhaidanPackages
 
       add_filter( "plugin_action_links_$this->plugin", array($this, 
       'settings_link'));
+
+      
     }
 
     public function settings_link( $links) {
@@ -77,6 +79,8 @@ class AliDhaidanPackages
       'Weekly_packages', array( $this, 'admin_index'), 'dashicons-admin-media', 110 );
 
     }
+
+    
 
     public function admin_index() {
       require_once plugin_dir_path(__FILE__) . 'templates/Admin.php' ;
@@ -117,6 +121,8 @@ if (class_exists( 'AliDhaidanPackages')) {
   
   
 }
+
+
 
 
 // activation

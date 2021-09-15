@@ -113,11 +113,13 @@ require INSPIRO_THEME_DIR . 'inc/dynamic-css/mobile-menu.php';
 
 function dhaidan_function() {
 
-	$options = "<p>Testing my shortcode</p>";
+	$txt = "<p>Testing my shortcode</p>";
   
 	return  str_repeat($txt, 2);
 }
 
 add_shortcode('dhaidan', 'dhaidan_function');
+
+
 
 
