@@ -119,7 +119,8 @@ if(!class_exists('cLR_Plugin_Settings'))
                 if ( is_wp_error($user_signon) ){
                     echo json_encode(array('loggedin'=>false, 'message'=>__('Wrong username or password.')));
                 } else {
-                    echo json_encode(array('loggedin'=>true, 'message'=>__('Login successful, redirecting...')));
+                    $redirectUrl = site_url()."/home";
+                    echo json_encode(array('loggedin'=>true,"redirectUrl" => $redirectUrl, 'message'=>__('Login successful, redirecting...')));
                 }
                 die();
             }else{
@@ -238,6 +239,8 @@ if(!class_exists('cLR_Plugin_Settings'))
             } else {
                 $register_user = wp_insert_user($userdata);
                 if (!is_wp_error($register_user)) {
+                    add_user_meta($register_user, 'country', $_POST['reg_country']);
+                    add_user_meta($register_user, 'phone', $_POST['reg_phone']);
                     echo json_encode(array('loggedin'=>true, 'message'=> 'Registration completed.' ));
                 } else {
                     echo json_encode(array('loggedin'=>false, 'message'=> $register_user->get_error_message() ));                    
