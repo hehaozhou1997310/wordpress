@@ -1,0 +1,34 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+.twt_progress {
+	width: 100%;
+	margin: auto;
+	height: 40px;
+	background-color: #f2f2f2;
+	position: relative;
+	border: 1px solid;
+	border-radius: 30px;
+	overflow: hidden;
+}
+.twt_bar{
+	position: absolute;
+	width: 0%;
+	height: 100%;
+	background-color: #000;
+	transition: all 200ms linear;
+}
+.twt_btn{
+	background-color: #000;
+	color: #fff;
+	font-size:  14px;
+	text-transform: uppercase;
+	padding: 15px 22px;
+	border: unset;
+	border-radius: 0px;
+	margin-top: 20px;
+}
+.twt_btn:disabled{
+	background-color: #0005;
+}

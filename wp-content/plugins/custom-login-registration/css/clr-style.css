@@ -1,0 +1,73 @@
+html {
+    box-sizing: border-box;
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  img {
+    box-sizing: content-box;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+  }
+  a:active,
+  a:hover {
+    outline: 0;
+  }
+  blockquote,
+  q {
+    quotes: none;
+  }
+  blockquote p:before,
+  blockquote p:after,
+  q:before,
+  q:after {
+    content: '';
+    content: none;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  caption,
+  th,
+  td {
+    text-align: left;
+    vertical-align: top;
+  }
+  thead th,
+  thead td {
+    font-weight: bold;
+    vertical-align: bottom;
+  }
+  
+  button,
+  input
+   {
+    margin: 0;
+  }
+  
+  button {
+    width: auto;
+    overflow: visible;
+  }
+ 
+  }
+  button:active,
+  button:focus {
+    outline: none;
+  }
+  input::-moz-focus-inner,
+  button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+  
