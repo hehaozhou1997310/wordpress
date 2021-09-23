@@ -26,7 +26,9 @@ msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%s
 msgstr "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%s</span>"
 
 #. translators: %s: WordPress version.
-#: inc/back-compat.php:40 inc/back-compat.php:55 inc/back-compat.php:76
+#. translators: %s: WordPress version.
+#. translators: %s: WordPress version.
+#: inc/back-compat.php:43 inc/back-compat.php:60 inc/back-compat.php:83
 msgid "Twenty Nineteen requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again."
 msgstr "Twenty Nineteen requires WordPress version 4.7+ or higher. You are running version %s. Upgrade it and try again."
 
@@ -35,8 +37,8 @@ msgctxt "Parent post link"
 msgid "<span class=\"meta-nav\">Published in</span><br><span class=\"post-title\">%title</span>"
 msgstr "<span class=\"meta-nav\">Published in</span><br><span class=\"post-title\">%title</span>"
 
-#: template-parts/content/content.php:18
 #: template-parts/content/content-excerpt.php:18
+#: template-parts/content/content.php:18
 msgctxt "post"
 msgid "Featured"
 msgstr "Featured"
@@ -111,7 +113,7 @@ msgstr "Light Grey"
 msgid "Dark Gray"
 msgstr "Dark Grey"
 
-#: functions.php:60 footer.php:37
+#: footer.php:37 functions.php:60
 msgid "Footer Menu"
 msgstr "Footer Menu"
 
@@ -128,7 +130,7 @@ msgstr "Page"
 msgid "Add widgets here to appear in your footer."
 msgstr "Add widgets here to appear in your footer."
 
-#: template-parts/footer/footer-widgets.php:12 functions.php:194
+#: functions.php:194 template-parts/footer/footer-widgets.php:12
 msgid "Footer"
 msgstr "Footer"
 
@@ -148,7 +150,7 @@ msgstr "Oops! That page can&rsquo;t be found."
 msgid "Comments are closed."
 msgstr "Comments are closed."
 
-#: template-parts/header/site-branding.php:46 functions.php:61
+#: functions.php:61 template-parts/header/site-branding.php:46
 msgid "Social Links Menu"
 msgstr "Social Links Menu"
 
@@ -156,16 +158,17 @@ msgstr "Social Links Menu"
 msgid "Skip to content"
 msgstr "Skip to content"
 
+#: image.php:52 template-parts/content/content-page.php:27
+#: template-parts/content/content-single.php:40
 #: template-parts/content/content.php:49
-#: template-parts/content/content-page.php:27
-#: template-parts/content/content-single.php:40 image.php:52
 msgid "Pages:"
 msgstr "Pages:"
 
-#. translators: %s: Post title. Only visible to screen readers.
 #. translators: %s: Post title.
+#. translators: %s: Post title. Only visible to screen readers.
+#. translators: %s: Post title. Only visible to screen readers.
+#: functions.php:225 template-parts/content/content-single.php:27
 #: template-parts/content/content.php:36
-#: template-parts/content/content-single.php:27 functions.php:225
 msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgstr "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
 
@@ -197,6 +200,7 @@ msgstr "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps sear
 msgid "Top Menu"
 msgstr "Top Menu"
 
+#. translators: Used between list items, there is a space after the comma.
 #. translators: Used between list items, there is a space after the comma.
 #: inc/template-tags.php:86 inc/template-tags.php:98
 msgid ", "
@@ -281,8 +285,10 @@ msgid "F Y"
 msgstr "F Y"
 
 #. translators: %s: Post title. Only visible to screen readers.
-#: template-parts/content/content-page.php:41
-#: template-parts/header/entry-header.php:32 inc/template-tags.php:120
+#. translators: %s: Post title. Only visible to screen readers.
+#. translators: %s: Post title. Only visible to screen readers.
+#: inc/template-tags.php:120 template-parts/content/content-page.php:41
+#: template-parts/header/entry-header.php:32
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr "Edit <span class=\"screen-reader-text\">%s</span>"
 

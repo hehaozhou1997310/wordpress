@@ -1,0 +1,129 @@
+body {
+    margin: unset;
+    padding: usnet;
+}
+.userdashboard {
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    margin-top: -25px;
+}
+.userdashoard-sidebar {
+    width: 280px;
+    height: 100vh;
+    /*position: fixed;*/
+    position:  absolute;;
+    background: #f4f5f9;
+}
+.margin-unset{
+    margin-top: unset;
+}
+.userdashoard-sidebar h4 {
+    font-size: 25px;
+    text-align: center;
+    background: #dcddf3;
+    margin: unset;
+    padding: 25px 0;
+}
+.userdashoard-sidebar ul {
+    padding: unset;
+    margin: unset;
+}
+.userdashoard-sidebar li {
+    margin: unset;
+    list-style-type: none;
+}
+.userdashoard-sidebar li a {
+    text-decoration: none !important;
+    display: block;
+    padding: 15px 0 15px 30px;
+    transition: 0.5s;
+    text-transform: capitalize;
+    color: grey;
+}
+.userdashoard-sidebar li a:hover {
+    color: #835ec9;
+    transition: 0.5s;
+    padding-left: 40px;
+}
+.active {
+    color: #835ec9 !important;
+    padding-left: 40px !important;
+}
+.userdashoard-sidebar li a i {
+    margin-right: 10px;
+    font-size: 24px;
+    position: relative;
+    top: 3px;
+}
+.body-content-dashboard {
+    width: 100%;
+    padding-left: 300px;
+    padding-right: 20px;
+    height: 100vh;
+}
+.dashboard-navbar {
+    text-align: right;
+    padding: 20px 0
+}
+.dashboard-navbar a {
+    font-size: 24px;
+    color: grey;
+    margin-left: 10px;
+}
+.content-dash h3 {
+    text-transform: capitalize;
+    font-size: 30px;
+}
+.dash-form-detail {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px 20px;
+    border: 1px solid #000;
+    border-radius: 6px;
+}
+.same-style-dash-form {
+    flex-basis: 50%;
+    margin-bottom: 15px;
+}
+.same-style-dash-form label {
+    min-width: 170px;
+    display: inline-block;
+}
+.same-style-dash-form input {
+    width: 58%;
+    border: 1px solid #ccc;
+    padding: 8px 10px;
+}
+.submit-dash-form {
+    width: 100%;
+    text-align: right;
+    padding-top: 15px;
+}
+.submit-dash-form input {
+    background: #000;
+    color: #fff;
+    border: unset;
+    padding: 10px 15px;
+    border-radius: 6px;
+}
+.entry-header,.wp-block-preformatted{
+    display: none;
+}
+.entry-content ul li {
+    list-style-type: none !important;
+}
+.login-required{
+    height: 50vh;
+    width: 100%;
+    text-align: center;
+    margin-top: 250px;
+}
+#udashmessage{
+    text-align: center;
+    color: rgb(185, 24, 24);
+    padding: 12px;
+}
+.d-none{
+    display: none;
+}
