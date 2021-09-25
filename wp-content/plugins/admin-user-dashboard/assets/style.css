@@ -56,6 +56,10 @@ body {
     position: relative;
     top: 3px;
 }
+.client-listing-box{
+    max-height: 540px;
+    overflow: scroll;
+}
 .body-content-dashboard {
     width: 100%;
     padding-left: 300px;
@@ -81,6 +85,9 @@ body {
     padding: 50px 20px;
     border: 1px solid #000;
     border-radius: 6px;
+}
+.client-register-page{
+    padding: 0px !important;
 }
 .same-style-dash-form {
     flex-basis: 50%;
@@ -119,11 +126,118 @@ body {
     text-align: center;
     margin-top: 250px;
 }
-#udashmessage{
+#udashmessage,#dashboardMessage{
     text-align: center;
-    color: rgb(185, 24, 24);
+    color: rgb(14, 185, 14);
     padding: 12px;
 }
 .d-none{
     display: none;
+}
+.client-name-box {
+    flex-wrap: wrap;
+    background: #f4f5f9;
+    margin-bottom: 15px;
+}
+.user-client i{
+    border: 1px solid;
+    border-radius: 50%;
+    padding: 18px 35px;
+}
+.j-center{
+    justify-content: center;
+}
+.client-text p{
+    font-weight: bold;
+}
+.client-text div{
+    width: max-content;
+}
+.user-client {
+    flex-basis: 20%;
+    text-align: center;
+}
+.client-text {
+    flex-basis: 60%;
+}
+.details-client {
+    flex-basis: 20%;
+    text-align: right;
+    padding-right: 20px;
+    padding-top: 42px;
+}
+.user-client i {
+    width: 100%;
+    font-size: 100px;
+}
+.btn-same-detail,.btn-delete {
+    background: #000 !important;
+    color: #fff;
+    width: 200px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+.add-new-schedule-btn,.add-new-packages-btn{
+    display: flex !important;
+    justify-content: center !important;
+}
+#dashboard_loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 9991030;
+    background: #00000090;
+}
+#dashboard_loader > img {
+    width: 125px;
+    display: block;
+    margin: 0 auto;
+    padding-top: 38vh;
+}
+
+.signin-page {
+    width: 100%;
+    padding: 8% 0 0;
+    margin: auto;
+}
+.fcontainer input {
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    font-size: 14px;
+}
+.fcontainer {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 450px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    border: 1px solid grey;
+    width: 100%;
+}
+.fcontainer button {
+    background: #4CAF50;
+    width: 100%;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+.fcontainer .signup-form {
+    display: none;
+}
+.flex {
+    display: flex;
+}
+
+/*.pinp input:first-child {*/
+/*margin-right: 10px;*/
+/*}*/
+.pinp input:last-child {
+    margin-right: 10px;
 }

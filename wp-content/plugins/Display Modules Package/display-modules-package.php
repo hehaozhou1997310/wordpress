@@ -1,16 +1,16 @@
 <?php
 /**
- * Plugin Name: Display Events Package
- * Description: Display a listing of events in the package.
+ * Plugin Name: Display Modules Package
+ * Description: Display a listing of modules in the package.
  * Version: 1.0.0
  * Author: Ali Dahidan & Haozhou He
  */
 
-add_shortcode( 'display-events', 'display_events_shortcode' );
+add_shortcode( 'display-modules', 'display_modules_shortcode' );
 
-function display_events_shortcode( $atts ) {
+function display_modules_shortcode( $atts ) {
 
-	$output = apply_filters( 'pre_display_events_shortcode_output', false, $atts );
+	$output = apply_filters( 'pre_display_modules_shortcode_output', false, $atts );
 	if ( false !== $output ) {
 		return $output;
 	}
@@ -22,7 +22,6 @@ function display_events_shortcode( $atts ) {
 	$atts = shortcode_atts(
 		array(
 			'author'                => '',
-			'author_id'             => '',
 			'category'              => '',
 			'category_display'      => '',
 			'category_id'           => false,
@@ -32,19 +31,13 @@ function display_events_shortcode( $atts ) {
 			'date'                  => '',
 			'date_column'           => 'post_date',
 			'date_compare'          => '=',
-			'date_query_before'     => '',
-			'date_query_after'      => '',
-			'date_query_column'     => '',
-			'date_query_compare'    => '',
 			'display_posts_off'     => false,
 			'excerpt_length'        => false,
 			'excerpt_more'          => false,
 			'excerpt_more_link'     => false,
 			'exclude'               => false,
 			'exclude_current'       => false,
-			'has_password'          => null,
 			'id'                    => false,
-			'ignore_sticky_posts'   => false,
 			'image_size'            => false,
 			'include_author'        => false,
 			'include_content'       => false,
@@ -54,24 +47,15 @@ function display_events_shortcode( $atts ) {
 			'include_excerpt_dash'  => true,
 			'include_link'          => true,
 			'include_title'         => true,
-			'meta_key'              => '', 
-			'meta_value'            => '', 
 			'no_posts_message'      => '',
-			'offset'                => 0,
 			'order'                 => 'DESC',
 			'orderby'               => 'date',
-			'post_parent'           => false,
-			'post_parent__in'       => false,
-			'post_parent__not_in'   => false,
 			'post_status'           => 'publish',
 			'post_type'             => 'post',
 			'posts_per_page'        => '10',
 			's'                     => false,
 			'tag'                   => '',
-			'tax_operator'          => 'IN',
-			'tax_include_children'  => true,
-			'tax_term'              => false,
-			'taxonomy'              => false,
+			
 			'time'                  => '',
 			'title'                 => '',
 			'wrapper'               => 'ul',
@@ -88,7 +72,6 @@ function display_events_shortcode( $atts ) {
 	}
 
 	$author                = sanitize_text_field( $atts['author'] );
-	$author_id             = (int) $atts['author_id'];
 	$category              = sanitize_text_field( $atts['category'] );
 	$category_display      = 'true' === $atts['category_display'] ? 'category' : sanitize_text_field( $atts['category_display'] );
 	$category_id           = (int) $atts['category_id'];
@@ -96,20 +79,13 @@ function display_events_shortcode( $atts ) {
 	$content_class         = array_map( 'sanitize_html_class', explode( ' ', $atts['content_class'] ) );
 	$date_format           = sanitize_text_field( $atts['date_format'] );
 	$date                  = sanitize_text_field( $atts['date'] );
-	$date_column           = sanitize_text_field( $atts['date_column'] );
 	$date_compare          = sanitize_text_field( $atts['date_compare'] );
-	$date_query_before     = sanitize_text_field( $atts['date_query_before'] );
-	$date_query_after      = sanitize_text_field( $atts['date_query_after'] );
-	$date_query_column     = sanitize_text_field( $atts['date_query_column'] );
-	$date_query_compare    = sanitize_text_field( $atts['date_query_compare'] );
 	$excerpt_length        = (int) $atts['excerpt_length'];
 	$excerpt_more          = sanitize_text_field( $atts['excerpt_more'] );
 	$excerpt_more_link     = filter_var( $atts['excerpt_more_link'], FILTER_VALIDATE_BOOLEAN );
-	$exclude               = $atts['exclude']; 
+	$exclude               = $atts['exclude']; // Sanitized later as an array of integers.
 	$exclude_current       = filter_var( $atts['exclude_current'], FILTER_VALIDATE_BOOLEAN );
-	$has_password          = null !== $atts['has_password'] ? filter_var( $atts['has_password'], FILTER_VALIDATE_BOOLEAN ) : null;
-	$id                    = $atts['id']; 
-	$ignore_sticky_posts   = filter_var( $atts['ignore_sticky_posts'], FILTER_VALIDATE_BOOLEAN );
+	$id                    = $atts['id']; // Sanitized later as an array of integers.
 	$image_size            = sanitize_key( $atts['image_size'] );
 	$include_title         = filter_var( $atts['include_title'], FILTER_VALIDATE_BOOLEAN );
 	$include_author        = filter_var( $atts['include_author'], FILTER_VALIDATE_BOOLEAN );
@@ -119,25 +95,14 @@ function display_events_shortcode( $atts ) {
 	$include_excerpt       = filter_var( $atts['include_excerpt'], FILTER_VALIDATE_BOOLEAN );
 	$include_excerpt_dash  = filter_var( $atts['include_excerpt_dash'], FILTER_VALIDATE_BOOLEAN );
 	$include_link          = filter_var( $atts['include_link'], FILTER_VALIDATE_BOOLEAN );
-	$meta_key              = sanitize_text_field( $atts['meta_key'] );
-	$meta_value            = sanitize_text_field( $atts['meta_value'] );
 	$no_posts_message      = sanitize_text_field( $atts['no_posts_message'] );
-	$offset                = (int) $atts['offset'];
 	$order                 = sanitize_key( $atts['order'] );
 	$orderby               = sanitize_key( $atts['orderby'] );
-	$post_parent           = $atts['post_parent']; 
-	$post_parent__in       = $atts['post_parent__in'];
-	$post_parent__not_in   = $atts['post_parent__not_in'];
-	$post_status           = $atts['post_status']; 
+	$post_status           = $atts['post_status']; // Validated later as one of a few values.
 	$post_type             = sanitize_text_field( $atts['post_type'] );
 	$posts_per_page        = (int) $atts['posts_per_page'];
 	$s                     = sanitize_text_field( $atts['s'] );
 	$tag                   = sanitize_text_field( $atts['tag'] );
-	$tax_operator          = $atts['tax_operator']; 
-	$tax_include_children  = filter_var( $atts['tax_include_children'], FILTER_VALIDATE_BOOLEAN );
-	$tax_term              = sanitize_text_field( $atts['tax_term'] );
-	$taxonomy              = sanitize_key( $atts['taxonomy'] );
-	$time                  = sanitize_text_field( $atts['time'] );
 	$shortcode_title       = sanitize_text_field( $atts['title'] );
 	$wrapper               = sanitize_text_field( $atts['wrapper'] );
 	$wrapper_class         = array_map( 'sanitize_html_class', explode( ' ', $atts['wrapper_class'] ) );
@@ -197,57 +162,7 @@ function display_events_shortcode( $atts ) {
 
 		$valid_compare_ops = array( '=', '!=', '>', '>=', '<', '<=', 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' );
 
-		// Sanitize and add date segments.
-		$dates = be_sanitize_date_time( $date );
-		if ( ! empty( $dates ) ) {
-			if ( is_string( $dates ) ) {
-				$timestamp = strtotime( $dates );
-				$dates     = array(
-					'year'  => date( 'Y', $timestamp ),
-					'month' => date( 'm', $timestamp ),
-					'day'   => date( 'd', $timestamp ),
-				);
-			}
-			foreach ( $dates as $arg => $segment ) {
-				$initial_date_query[ $arg ] = $segment;
-			}
-		}
-
-		// Sanitize and add time segments.
-		$times = be_sanitize_date_time( $time, 'time' );
-		if ( ! empty( $times ) ) {
-			foreach ( $times as $arg => $segment ) {
-				$initial_date_query[ $arg ] = $segment;
-			}
-		}
-
-		// Date query 'before' argument.
-		$before = be_sanitize_date_time( $date_query_before, 'date', true );
-		if ( ! empty( $before ) ) {
-			$initial_date_query['before'] = $before;
-		}
-
-		// Date query 'after' argument.
-		$after = be_sanitize_date_time( $date_query_after, 'date', true );
-		if ( ! empty( $after ) ) {
-			$initial_date_query['after'] = $after;
-		}
-
-		// Date query 'column' argument.
-		if ( ! empty( $date_query_column ) && in_array( $date_query_column, $valid_date_columns, true ) ) {
-			$initial_date_query['column'] = $date_query_column;
-		}
-
-		// Date query 'compare' argument.
-		if ( ! empty( $date_query_compare ) && in_array( $date_query_compare, $valid_compare_ops, true ) ) {
-			$initial_date_query['compare'] = $date_query_compare;
-		}
-
-		// 'column' argument.
-		if ( ! empty( $date_column ) && in_array( $date_column, $valid_date_columns, true ) ) {
-			$date_query_top_lvl['column'] = $date_column;
-		}
-
+		
 		// 'compare' argument.
 		if ( ! empty( $date_compare ) && in_array( $date_compare, $valid_compare_ops, true ) ) {
 			$date_query_top_lvl['compare'] = $date_compare;
@@ -260,27 +175,7 @@ function display_events_shortcode( $atts ) {
 
 		// Date queries.
 		$args['date_query'] = $date_query_top_lvl;
-	}
-
-	// Ignore Sticky Posts.
-	if ( $ignore_sticky_posts ) {
-		$args['ignore_sticky_posts'] = true;
-	}
-
-	// Password protected content.
-	if ( null !== $has_password ) {
-		$args['has_password'] = $has_password;
-	}
-
-	// Meta key (for ordering).
-	if ( ! empty( $meta_key ) ) {
-		$args['meta_key'] = $meta_key;
-	}
-
-	// Meta value (for simple meta queries).
-	if ( ! empty( $meta_value ) ) {
-		$args['meta_value'] = $meta_value; 
-	}
+	} 
 
 	// If Post IDs.
 	if ( $id ) {
@@ -300,24 +195,6 @@ function display_events_shortcode( $atts ) {
 		$args['post__not_in'] = $post__not_in; 
 	}
 
-	// Post Author.
-	if ( ! empty( $author ) ) {
-		if ( 'current' === $author && is_user_logged_in() ) {
-			$args['author_name'] = wp_get_current_user()->user_login;
-		} elseif ( 'current' === $author ) {
-			$args['meta_key'] = 'dps_no_results'; 
-		} else {
-			$args['author_name'] = $author;
-		}
-	} elseif ( ! empty( $author_id ) ) {
-		$args['author'] = $author_id;
-	}
-
-	// Offset.
-	if ( ! empty( $offset ) ) {
-		$args['offset'] = $offset;
-	}
-
 	// Post Status.
 	$post_status = be_dps_explode( $post_status );
 	$validated   = array();
@@ -331,93 +208,7 @@ function display_events_shortcode( $atts ) {
 		$args['post_status'] = $validated;
 	}
 
-	// If taxonomy attributes, create a taxonomy query.
-	if ( ! empty( $taxonomy ) && ! empty( $tax_term ) ) {
-
-		if ( 'current' === $tax_term ) {
-			global $post;
-			$terms    = wp_get_post_terms( get_the_ID(), $taxonomy );
-			$tax_term = array();
-			foreach ( $terms as $term ) {
-				$tax_term[] = $term->slug;
-			}
-		} else {
-			// Term string to array.
-			$tax_term = be_dps_explode( $tax_term );
-		}
-
-		// Validate operator.
-		if ( ! in_array( $tax_operator, array( 'IN', 'NOT IN', 'AND' ), true ) ) {
-			$tax_operator = 'IN';
-		}
-
-		$tax_args = array(
-			'tax_query' => array(
-				array(
-					'taxonomy'         => $taxonomy,
-					'field'            => 'slug',
-					'terms'            => $tax_term,
-					'operator'         => $tax_operator,
-					'include_children' => $tax_include_children,
-				),
-			),
-		);
-
-		// Check for multiple taxonomy queries.
-		$count            = 2;
-		$more_tax_queries = false;
-		while (
-			isset( $original_atts[ 'taxonomy_' . $count ] ) && ! empty( $original_atts[ 'taxonomy_' . $count ] ) &&
-			isset( $original_atts[ 'tax_' . $count . '_term' ] ) && ! empty( $original_atts[ 'tax_' . $count . '_term' ] )
-		) :
-
-			// Sanitize values.
-			$more_tax_queries     = true;
-			$taxonomy             = sanitize_key( $original_atts[ 'taxonomy_' . $count ] );
-			$terms                = be_dps_explode( sanitize_text_field( $original_atts[ 'tax_' . $count . '_term' ] ) );
-			$tax_operator         = isset( $original_atts[ 'tax_' . $count . '_operator' ] ) ? $original_atts[ 'tax_' . $count . '_operator' ] : 'IN';
-			$tax_operator         = in_array( $tax_operator, array( 'IN', 'NOT IN', 'AND' ), true ) ? $tax_operator : 'IN';
-			$tax_include_children = isset( $original_atts[ 'tax_' . $count . '_include_children' ] ) ? filter_var( $atts[ 'tax_' . $count . '_include_children' ], FILTER_VALIDATE_BOOLEAN ) : true;
-
-			$tax_args['tax_query'][] = array(
-				'taxonomy'         => $taxonomy,
-				'field'            => 'slug',
-				'terms'            => $terms,
-				'operator'         => $tax_operator,
-				'include_children' => $tax_include_children,
-			);
-
-			$count++;
-
-		endwhile;
-
-		if ( $more_tax_queries ) :
-			$tax_relation = 'AND';
-			if ( isset( $original_atts['tax_relation'] ) && in_array( $original_atts['tax_relation'], array( 'AND', 'OR' ), true ) ) {
-				$tax_relation = $original_atts['tax_relation'];
-			}
-			$args['tax_query']['relation'] = $tax_relation;
-		endif;
-
-		$args = array_merge_recursive( $args, $tax_args );
-	}
-
-	// If post parent attribute, set up parent.
-	if ( false !== $post_parent ) {
-		if ( 'current' === $post_parent ) {
-			$post_parent = get_the_ID();
-		}
-		$args['post_parent'] = (int) $post_parent;
-	}
-
-	if ( false !== $post_parent__in ) {
-		$args['post_parent__in'] = array_map( 'intval', be_dps_explode( $atts['post_parent__in'] ) );
-	}
-	if ( false !== $post_parent__not_in ) {
-		$args['post_parent__not_in'] = array_map( 'intval', be_dps_explode( $atts['post_parent__in'] ) );
-	}
-
-	// Set up html elements used to wrap the posts.
+	// Set up html elements used to wrap the posts. Default is ul/li, but can also be ol/li and div/div.
 	$wrapper_options = array( 'ul', 'ol', 'div' );
 	if ( ! in_array( $wrapper, $wrapper_options, true ) ) {
 		$wrapper = 'ul';
@@ -427,8 +218,8 @@ function display_events_shortcode( $atts ) {
 	// Filter the arguments passed to WP_Query.
 	global $dps_listing;
 	$dps_listing = new WP_Query( apply_filters( 'display_events_package_args', $args, $original_atts ) );
+
 	if ( ! $dps_listing->have_posts() ) {
-		// Filter content to display if no posts match the current query.
 		return apply_filters( 'display_events_package_no_results', wpautop( $no_posts_message ) );
 	}
 
@@ -472,7 +263,7 @@ function display_events_shortcode( $atts ) {
 		}
 
 		if ( $include_author ) {
-			// Filter the HTML markup to display author information for the current post.
+			//	
 			$author = apply_filters( 'display_posts_shortcode_author', ' <span class="author">by ' . get_the_author() . '</span>', $original_atts );
 		}
 
@@ -525,7 +316,7 @@ function display_events_shortcode( $atts ) {
 				$category_display_text = ' <span class="category-display"><span class="category-display-label">' . $category_label . '</span> ' . implode( ', ', $term_output ) . '</span>';
 			}
 
-			// Filter the list of categories attached to the current post.
+			//  Filter the list of categories attached to the current post.
 			$category_display_text = apply_filters( 'display_posts_shortcode_category_display', $category_display_text, $terms, $category_display, $original_atts );
 
 		}
@@ -542,7 +333,7 @@ function display_events_shortcode( $atts ) {
 	endwhile;
 	wp_reset_postdata();
 
-	// Filter the shortcode output's opening outer wrapper element.
+	// Filter the shortcode output's opening outer wrapper element.	
 	$open = apply_filters( 'display_posts_shortcode_wrapper_open', '<' . $wrapper . $wrapper_class . $wrapper_id . '>', $original_atts, $dps_listing );
 
 	// Filter the shortcode output's closing outer wrapper element.
@@ -552,7 +343,7 @@ function display_events_shortcode( $atts ) {
 
 	if ( $shortcode_title ) {
 
-		// Filter the shortcode output title tag element.
+		/**		 * Filter the shortcode output title tag element.		 */
 		$title_tag = apply_filters( 'display_posts_shortcode_title_tag', 'h2', $original_atts );
 
 		$return .= '<' . $title_tag . ' class="display-posts-title">' . $shortcode_title . '</' . $title_tag . '>' . "\n";
@@ -563,10 +354,8 @@ function display_events_shortcode( $atts ) {
 	return $return;
 }
 
-// Explode list using "," and ", "
+//* Explode list using "," and ", ".
 function be_dps_explode( $string = '' ) {
 	$string = str_replace( ', ', ',', $string );
 	return explode( ',', $string );
 }
-
-

@@ -12,7 +12,7 @@ License: 1234
 
 function bl_shortcode() {
 	echo "<center></br>";
-	echo "Feel free to book in a time & date with Jenelle via Calendly!";
+	echo "<h4>Schedule a date & time that suits you via Jenelle's 'calendly' link</h4>";
 	echo '<p>';
 	echo "<center></br>";
 	echo '<input type="submit" name="submit" style="width:140px;height:60px" value="Book Now!" onclick="window.open(\'http://calendly.com\')"/>';
