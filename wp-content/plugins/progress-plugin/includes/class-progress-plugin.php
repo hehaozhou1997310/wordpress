@@ -178,7 +178,8 @@ class Progress_Plugin {
 		
 		$this->loader->add_action( 'wp_ajax_progress_ajax_call_action', $plugin_public, 'progress_ajax_call_action' );
 		$this->loader->add_action( 'wp_ajax_nopriv_progress_ajax_call_action', $plugin_public, 'progress_ajax_call_action' );
-	
+		
+		$this->loader->add_action( 'wp_ajax_progress_reset_ajax_call_action', $plugin_public, 'progress_reset_ajax_call_action' );
 		$this->loader->add_action( 'wp_ajax_nopriv_progress_reset_ajax_call_action', $plugin_public, 'progress_reset_ajax_call_action' );
 	}
 

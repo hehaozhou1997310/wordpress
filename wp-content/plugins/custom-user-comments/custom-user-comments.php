@@ -1,16 +1,16 @@
 <?php
 /**
-* Plugin Name: Custom User Comments
+* Plugin Name: Custom User comments
 * Plugin URI: 
 * Description: User comments completed packages.
-* Version: 1.0
+* Version: 1.0.0
 * Author: Haozhou He
 **/
 
-add_action('save_post', 'user_edit_pending_reviews');
-
-function user_edit_pending_reviews($post_id) {
+add_action('save_post', 'user_edit_pending_comments');
  
+function user_edit_pending_comments($post_id) {
+   
     if (empty($post_id)) {
         return;
     }
@@ -28,11 +28,12 @@ function user_edit_pending_reviews($post_id) {
     if (in_array('contributor', $current_user->roles) && $post->post_status=='publish') {
         $my_post = array(
             'ID' => $post_id,
-            'page_status' => 'pending',
+            'post_status' => 'pending',
         );
  
-        remove_action('save_post', 'user_edit_pending_reviews');
+        remove_action('save_post', 'user_edit_pending_comments');
         wp_update_post($my_post);
-        add_action('save_post', 'user_edit_pending_reviews');
+        add_action('save_post', 'user_edit_pending_comments');
     }
 }
+

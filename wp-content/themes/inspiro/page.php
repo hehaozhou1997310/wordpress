@@ -42,7 +42,7 @@ get_header(); ?>
 		</main><!-- #main -->
 
 <?php if ( ( is_page() && ! inspiro_is_frontpage() ) && ! has_post_thumbnail( get_queried_object_id() ) ) : ?>
-	<?php if (comments_open() ) comments_template(); ?>
+
 	</div><!-- #primary -->
 </div><!-- .inner-wrap -->
 

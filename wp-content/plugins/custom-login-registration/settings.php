@@ -99,7 +99,7 @@ if(!class_exists('cLR_Plugin_Settings'))
          <div class="col-lg-12">
             <center>	
                 <label for="text">Not registered?</label>
-                <a href = "'.CLR_URL.'/register-3/"><button type="submit" class="btn btn-md btn-link" name="submit">Register</button></a>
+                <a href = CLR_URL/register-3/"><button type="submit" class="btn btn-md btn-link" name="submit">Register</button></a>
             </center>
         </div>';   
         return $output;
@@ -207,7 +207,7 @@ if(!class_exists('cLR_Plugin_Settings'))
             <div class="col-lg-12">	
             <center>
             <label for="text">Already registered?</label>
-            <a href = "'.CLR_URL.'/login-2"><button type="submit" class="btn btn-md btn-link" name="submit">Login</button></a>
+            <a href = "CLR_URL/login-2"><button type="submit" class="btn btn-md btn-link" name="submit">Login</button></a>
             </center>
             </div>';               
         return $output;
@@ -226,7 +226,7 @@ if(!class_exists('cLR_Plugin_Settings'))
                 $this->country = $_POST['reg_contry'];
                 $this->phone  = $_POST['reg_phone']; 
                 $this->password   = $_POST['reg_password'];
-                $this->confirm_pass   = $_POST['reg_confirm _pass'];
+                $this->confirm_pass   = $_POST['reg_confirm_pass'];
             }
 
             $userdata = array(
@@ -245,6 +245,8 @@ if(!class_exists('cLR_Plugin_Settings'))
             } else {
                 $register_user = wp_insert_user($userdata);
                 if (!is_wp_error($register_user)) {
+                    add_user_meta($register_user, 'country', $_POST['reg_country']);
+                    add_user_meta($register_user, 'phone', $_POST['reg_phone']);
                     echo json_encode(array('loggedin'=>true, 'message'=> 'Registration completed.' ));
                 } else {
                     echo json_encode(array('loggedin'=>false, 'message'=> $register_user->get_error_message() ));                    
@@ -279,9 +281,9 @@ if(!class_exists('cLR_Plugin_Settings'))
             if (strlen($this->password) < 6) {
                 return new WP_Error('password', 'Password length must be greater than 6.');
             }
-            /*elseif ( $this->password != $this->confirm_pass) {
+            elseif ( $this->password != $this->confirm_pass) {
                 return new WP_Error('password', 'The two passwords are inconsistent'); 
-            }*/
+            }
             
             $details = array(
                             'Username'   => $this->username,

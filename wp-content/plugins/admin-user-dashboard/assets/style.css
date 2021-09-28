@@ -1,0 +1,243 @@
+body {
+    margin: unset;
+    padding: usnet;
+}
+.userdashboard {
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    margin-top: -25px;
+}
+.userdashoard-sidebar {
+    width: 280px;
+    height: 100vh;
+    /*position: fixed;*/
+    position:  absolute;;
+    background: #f4f5f9;
+}
+.margin-unset{
+    margin-top: unset;
+}
+.userdashoard-sidebar h4 {
+    font-size: 25px;
+    text-align: center;
+    background: #dcddf3;
+    margin: unset;
+    padding: 25px 0;
+}
+.userdashoard-sidebar ul {
+    padding: unset;
+    margin: unset;
+}
+.userdashoard-sidebar li {
+    margin: unset;
+    list-style-type: none;
+}
+.userdashoard-sidebar li a {
+    text-decoration: none !important;
+    display: block;
+    padding: 15px 0 15px 30px;
+    transition: 0.5s;
+    text-transform: capitalize;
+    color: grey;
+}
+.userdashoard-sidebar li a:hover {
+    color: #835ec9;
+    transition: 0.5s;
+    padding-left: 40px;
+}
+.active {
+    color: #835ec9 !important;
+    padding-left: 40px !important;
+}
+.userdashoard-sidebar li a i {
+    margin-right: 10px;
+    font-size: 24px;
+    position: relative;
+    top: 3px;
+}
+.client-listing-box{
+    max-height: 540px;
+    overflow: scroll;
+}
+.body-content-dashboard {
+    width: 100%;
+    padding-left: 300px;
+    padding-right: 20px;
+    height: 100vh;
+}
+.dashboard-navbar {
+    text-align: right;
+    padding: 20px 0
+}
+.dashboard-navbar a {
+    font-size: 24px;
+    color: grey;
+    margin-left: 10px;
+}
+.content-dash h3 {
+    text-transform: capitalize;
+    font-size: 30px;
+}
+.dash-form-detail {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px 20px;
+    border: 1px solid #000;
+    border-radius: 6px;
+}
+.client-register-page{
+    padding: 0px !important;
+}
+.same-style-dash-form {
+    flex-basis: 50%;
+    margin-bottom: 15px;
+}
+.same-style-dash-form label {
+    min-width: 170px;
+    display: inline-block;
+}
+.same-style-dash-form input {
+    width: 58%;
+    border: 1px solid #ccc;
+    padding: 8px 10px;
+}
+.submit-dash-form {
+    width: 100%;
+    text-align: right;
+    padding-top: 15px;
+}
+.submit-dash-form input {
+    background: #000;
+    color: #fff;
+    border: unset;
+    padding: 10px 15px;
+    border-radius: 6px;
+}
+.entry-header,.wp-block-preformatted{
+    display: none;
+}
+.entry-content ul li {
+    list-style-type: none !important;
+}
+.login-required{
+    height: 50vh;
+    width: 100%;
+    text-align: center;
+    margin-top: 250px;
+}
+#udashmessage,#dashboardMessage{
+    text-align: center;
+    color: rgb(14, 185, 14);
+    padding: 12px;
+}
+.d-none{
+    display: none;
+}
+.client-name-box {
+    flex-wrap: wrap;
+    background: #f4f5f9;
+    margin-bottom: 15px;
+}
+.user-client i{
+    border: 1px solid;
+    border-radius: 50%;
+    padding: 18px 35px;
+}
+.j-center{
+    justify-content: center;
+}
+.client-text p{
+    font-weight: bold;
+}
+.client-text div{
+    width: max-content;
+}
+.user-client {
+    flex-basis: 20%;
+    text-align: center;
+}
+.client-text {
+    flex-basis: 60%;
+}
+.details-client {
+    flex-basis: 20%;
+    text-align: right;
+    padding-right: 20px;
+    padding-top: 42px;
+}
+.user-client i {
+    width: 100%;
+    font-size: 100px;
+}
+.btn-same-detail,.btn-delete {
+    background: #000 !important;
+    color: #fff;
+    width: 200px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+.add-new-schedule-btn,.add-new-packages-btn{
+    display: flex !important;
+    justify-content: center !important;
+}
+#dashboard_loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 9991030;
+    background: #00000090;
+}
+#dashboard_loader > img {
+    width: 125px;
+    display: block;
+    margin: 0 auto;
+    padding-top: 38vh;
+}
+
+.signin-page {
+    width: 100%;
+    padding: 8% 0 0;
+    margin: auto;
+}
+.fcontainer input {
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    font-size: 14px;
+}
+.fcontainer {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 450px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    border: 1px solid grey;
+    width: 100%;
+}
+.fcontainer button {
+    background: #4CAF50;
+    width: 100%;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+.fcontainer .signup-form {
+    display: none;
+}
+.flex {
+    display: flex;
+}
+
+/*.pinp input:first-child {*/
+/*margin-right: 10px;*/
+/*}*/
+.pinp input:last-child {
+    margin-right: 10px;
+}
