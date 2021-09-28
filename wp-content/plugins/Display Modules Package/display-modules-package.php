@@ -2,18 +2,22 @@
 /**
  * Plugin Name: Display Modules Package
  * Description: Display a listing of modules in the package.
- * Version: 1.0.0
- * Author: Ali Dahidan & Haozhou He
+ * Version: 1.2.0
+ * Author:  Haozhou He & Ali Dahidan
  */
 
 add_shortcode( 'display-modules', 'display_modules_shortcode' );
 
 function display_modules_shortcode( $atts ) {
-
-	$output = apply_filters( 'pre_display_modules_shortcode_output', false, $atts );
-	if ( false !== $output ) {
-		return $output;
-	}
+	ob_start();
+	  if(!is_user_logged_in()){
+		echo  "<div class='login-required'>You are currently not logged in. Please <a href='".site_url()."/login-2'>login or register</a> to access this page. </div>";
+	  }
+	  else{
+	   /* $output = apply_filters( 'pre_display_modules_shortcode_output', false, $atts );
+	  if ( false !== $output ) {
+		return $output; 
+	}*/
 
 	// Original attributes, for filters.
 	$original_atts = $atts;
@@ -352,6 +356,8 @@ function display_modules_shortcode( $atts ) {
 	$return .= $open . $inner . $close;
 
 	return $return;
+  }
+
 }
 
 //* Explode list using "," and ", ".

@@ -1,8 +1,8 @@
 # Inspiro #
 **Contributors:** [WPZOOM](https://profiles.wordpress.org/WPZOOM)  
 **Requires at least:** 5.2  
-**Tested up to:** 5.7  
-**Version:** 1.4.0  
+**Tested up to:** 5.8  
+**Version:** 1.5.1  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 **Tags:** one-column, right-sidebar, flexible-header, accessibility-ready, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready  
@@ -101,6 +101,16 @@ License: CC0 1.0 Universal (CC0 1.0)
 Source: https://stocksnap.io/photo/autumn-trees-WV0YTVMU7P
 
 ## Changelog ##
+
+### 1.5.1 ###
+* Improved migration process to Inspiro PRO theme
+
+### 1.5.0 ###
+* Added Elementor Integration. Thanks to Elementor Addons by WPZOOM plugin you can get access to a dozen of new templates & custom widgets
+* Multiple bug fixes
+
+### 1.4.1 ###
+* Minor bug fix with the search form not closing
 
 ### 1.4.0 ###
 * Added feature to easily migrate to Inspiro Premium and keep all settings

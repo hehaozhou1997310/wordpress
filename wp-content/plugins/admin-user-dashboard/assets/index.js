@@ -86,7 +86,7 @@ const Clients = {
         })
     },
     deleteClient:(id)=>{
-
+        if(confirm("Are you sure to delete this user?")){
         $.ajax({
             url:global_obj.ajaxUrl,
             type:'POST',
@@ -106,6 +106,7 @@ const Clients = {
                 }
             }
         })
+    }
     }
 }
 

@@ -40,7 +40,7 @@ function udash_enqueue_assets()
 function udash_view(){
     ob_start();
     if(!is_user_logged_in()){
-      echo  "<div class='login-required'>login required... <a href='".site_url()."/userlogin'>login</a></div>";
+      echo  "<div class='login-required'>You are currently not logged in. Please <a href='".site_url()."/login-2'>login or register</a> to access this page.</div>";
     }else {
         $loggedInUserId = get_current_user_id();
         $user = wp_get_current_user();
@@ -161,6 +161,7 @@ function admin_dash_view(){
                     <li><a href="#" onclick="DisplayTabs.pagesController(this,'my-packages')" class="nav-items"><i class="bi bi-box"></i>Packages</a></li>
                     <li><a href="#" onclick="DisplayTabs.pagesController(this,'my-details')" class="nav-items active"><i class="bi bi-journal-text"></i>Clients</a></li>
                     <li><a href="#" onclick="DisplayTabs.pagesController(this,'my-schedule')" class="nav-items"><i class="bi bi-calendar-date"></i>Schedule</a></li>
+                    <li><a href="#" onclick="DisplayTabs.pagesController(this,'my-tracker')" class="nav-items"><i class="bi bi-bar-chart"></i>Progress Tracker</a></li>
                 </ul>
             </div>
             <div class="body-content-dashboard">
@@ -185,6 +186,59 @@ function admin_dash_view(){
                             </div>
                         </div>
                     </div>
+                   
+                    <div id="my-tracker" class="content-dash-body d-none" style="max-height: 640px;overflow: scroll;">
+                    <h3 class="margin-unset">Progress System Tracker</h3>
+                    <?php
+
+                    if(is_user_logged_in()){
+                        // echo "<pre>";
+                        $users = get_users( array( 'fields' => array( 'ID' ) ) );
+                        foreach($users as $user){
+                            $progress_status = get_user_meta ( $user->ID, 'progress_btn_id', true);
+                           
+                                $exist_btn_array = explode(',', $progress_status);
+                                $current_status = count($exist_btn_array);
+                                $user_first_name = get_user_meta ( $user->ID, 'first_name', true);
+                                $user_last_name = get_user_meta ( $user->ID, 'last_name', true);
+                                $user_nickname = get_user_meta ( $user->ID, 'nickname', true);
+
+                                ?>
+                                <div style="margin-top: 20px; margin-bottom: 50px;">
+                                <h4><b>Client Name:</b> <?php 
+
+                                if(!empty($user_first_name) || !empty($user_last_name)){
+                                   ?> <?= $user_first_name ?> <?= $user_last_name ?>
+                                   <?php
+                                }else{
+                                    echo $user_nickname;
+                                }
+                                ?> </h4>
+                                <h4><b>Modules Completed:</b> 
+                                    <?php if(empty($progress_status)){
+                                        echo "0";
+                                        $progress_exist =  (0/7)*100;
+                                    }else{
+                                        echo $current_status;
+                                        $progress_exist =  ($current_status/7)*100;
+                                    }
+                                    ?>/7
+                                </h4>
+                                <?php  ?>
+                                <div class="twt_progress u_dashboard" style="width:30%;margin: 0px;">
+                                    <div class="twt_bar" style='width: <?= $progress_exist ?>%'></div>
+                                    <input type="hidden" name="twt_progress" value="<?= $progress_exist ?>">
+                                </div>
+                                </div>
+                                <?php
+                            
+                        }
+
+                    }
+
+                    ?>
+                </div>
+
                     <div id="my-details" class="content-dash-body">
                         <span id="dashboard_loader" style="display: none;">
                             <img src="<?= plugins_url('/admin-user-dashboard/assets/loader-3.gif') ?>"/>
@@ -218,7 +272,7 @@ function admin_dash_view(){
                                             </ul>
                                         </div>
                                         <div class="details-client">
-                                            <button class="btn-same-detail" onclick="Clients.viewClientDetials(<?= $user->ID ?>)">View Detials</button>
+                                            <button class="btn-same-detail" onclick="Clients.viewClientDetials(<?= $user->ID ?>)">View Details</button>
                                             <button class="btn-delete" onclick="Clients.deleteClient(<?= $user->ID ?>)">Delete</button>
                                         </div>
                                     </div>
@@ -263,8 +317,11 @@ function admin_dash_view(){
                 </div>
             </div>
         </div>
+            </div>
+        </div>
+    </div>
 
-        <?php
+    <?php
     }
     echo ob_get_clean();
 }
@@ -376,11 +433,8 @@ function viewClientDetials(){
     ob_start();
     $user_id = $_POST['user_id'];
     $user = get_user_by('id',$user_id);
+
     ?>
-    <div style="display: flex;width: 30%;">
-        <h6>Module Completed</h6>
-        <?= do_shortcode('[display_progress_shortcode]'); ?>
-    </div>
         <div class="fcontainer">
             <div class="client-name-box-content">
                 <div class="user-client">
@@ -416,11 +470,13 @@ function viewClientDetials(){
 
 add_filter( 'wp_nav_menu_items', 'add_extra_item_to_nav_menu', 10, 2 );
 function add_extra_item_to_nav_menu( $items, $args ) {
+
     if (is_user_logged_in() && !current_user_can('manage_options')) {
-        $items .= '<li><a href="'. site_url().'/user-dashboard'.'">User dahsboard</a></li>';
+        $items .= '<li><a href="'. site_url().'/user-dashboard'.'">User dashboard</a></li>';
     }
     if(is_user_logged_in() && current_user_can('manage_options')){
-        $items .= '<li><a href="'. site_url().'/admin-dashboard'.'">Admin dahsboard</a></li>';
+        $items .= '<li><a href="'. site_url().'/admin-dashboard'.'">Admin dashboard</a></li>';
     }
+   
     return $items;
 }
